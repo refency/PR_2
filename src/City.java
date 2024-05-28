@@ -67,28 +67,80 @@ public class City {
   // setters functions
   //
 
-  public void set_name(String name) {
+  public String set_name(String name) {
+    if (name.length() > 25) {
+      return Functions.Color("red") + "Name of city is too large: " + Functions.Color("reset") + "\n";
+    }
+    if (name.length() < 2) {
+      return Functions.Color("red") + "Name of city is too short: " + Functions.Color("reset") + "\n";
+    }
+
     this.name = name;
+    return print_success();
   }
 
-  public void set_region(String region) {
+  public String set_region(String region) {
+    if (region.length() > 35) {
+      return Functions.Color("red") + "Name of city region is too large: " + Functions.Color("reset") + "\n";
+    }
+    if (region.length() < 10) {
+      return Functions.Color("red") + "Name of city region is too short: " + Functions.Color("reset") + "\n";
+    }
+
     this.region = region;
+    return print_success();
   }
 
-  public void set_population(Integer population) {
+  public String set_population(Integer population) {
+    if (String.valueOf(population).length() > 10) {
+      return Functions.Color("red") + "Population of city is too big: " + Functions.Color("reset") + "\n";
+    }
+    if (String.valueOf(population).length() < 1) {
+      return Functions.Color("red") + "Population of city is too small: " + Functions.Color("reset") + "\n";
+    }
+
     this.population = population;
+    return print_success();
   }
 
-  public void set_district(Integer district) {
+  public String set_district(Integer district) {
+    if (String.valueOf(district).length() > 3) {
+      return Functions.Color("red") + "District of city is too big: " + Functions.Color("reset") + "\n";
+    }
+    if (String.valueOf(district).length() < 1) {
+      return Functions.Color("red") + "District of city is too small: " + Functions.Color("reset") + "\n";
+    }
+
     this.district = district;
+    return print_success();
   }
 
-  public void set_square(Double square) {
+  public String set_square(Double square) {
+    if (String.valueOf(square).length() > 15) {
+      return Functions.Color("red") + "Square of city is too big: " + Functions.Color("reset") + "\n";
+    }
+    if (String.valueOf(square).length() < 3) {
+      return Functions.Color("red") + "Square of city is too small: " + Functions.Color("reset") + "\n";
+    }
+
     this.square = square;
+    return print_success();
   }
 
-  public void set_density(Double density) {
+  public String set_density(Double density) {
+    if (String.valueOf(density).length() > 15) {
+      return Functions.Color("red") + "Density of city is too big: " + Functions.Color("reset") + "\n";
+    }
+    if (String.valueOf(density).length() < 3) {
+      return Functions.Color("red") + "Density of city is too small: " + Functions.Color("reset") + "\n";
+    }
+
     this.density = density;
+    return print_success();
+  }
+
+  public static String print_success() {
+    return Functions.Color("green") + "Data of index succesfully changed" + Functions.Color("reset") + "\n";
   }
 
   //

@@ -91,42 +91,54 @@ class Functions {
     print_fields();
 
     String field = check_field(city);
+    if(field == "") {
+      change_list(city);
+      return;
+    }
+
+
     int index = check_index(city);
+    if (index == -1)  {
+      change_list(city);
+      return;
+    }
 
     switch (field) {
       case "1":
-        city.get(index).set_name(check_value(new String[] {input_text("Insert the name of city: ")}, "string")[0].toString());
+        System.out.print(city.get(index).set_name(check_value(new String[] {input_text("Insert the name of city: ")}, "string")[0].toString()));
         break;
       case "2":
-        city.get(index).set_region(check_value(new String[] {input_text("Insert the name region of city: ")}, "string")[0].toString());
+        System.out.print(city.get(index).set_region(check_value(new String[] {input_text("Insert the name region of city: ")}, "string")[0].toString()));
         break;
       case "3":
-        city.get(index).set_population(Integer.parseInt(check_value(new String[] {input_text("Insert the population of city: ")}, "int")[0]));
+        System.out.print(city.get(index).set_population(Integer.parseInt(check_value(new String[] {input_text("Insert the population of city: ")}, "int")[0])));
         break;
       case "4":
-        city.get(index).set_district(Integer.parseInt(check_value(new String[] {input_text("Insert the name district of city: ")}, "int")[0]));
+        System.out.print(city.get(index).set_district(Integer.parseInt(check_value(new String[] {input_text("Insert the name district of city: ")}, "int")[0])));
         break;
       case "5":
-        city.get(index).set_square(Double.parseDouble(check_value(new String[] {input_text("Insert the square of city: ")}, "double")[0]));
+        System.out.print(city.get(index).set_square(Double.parseDouble(check_value(new String[] {input_text("Insert the square of city: ")}, "double")[0])));
         break;
       case "6":
-        city.get(index).set_density(Double.parseDouble(check_value(new String[] {input_text("Insert the density of city: ")}, "double")[0]));
+        System.out.print(city.get(index).set_density(Double.parseDouble(check_value(new String[] {input_text("Insert the density of city: ")}, "double")[0])));
         break;
       default:
         change_list(city);
         break;
     }
 
-    System.out.println(Functions.Color("green") + "Data of index succesfully changed" + Functions.Color("reset"));
+    Menu.all_menu(city);
   }
 
   public static String check_field(ArrayList<City> city) { // Checking exist field of object in list
     String field = input_text("Choose the field which you want to used, type the number: ");
-    if (Integer.valueOf(field) > 6 || Integer.valueOf(field) < 0) {
+
+    if (Integer.valueOf(field) > 6 || Integer.valueOf(field) < 1) {
       System.out.println(Color("red") + "Typed of field do not exist" + Color("reset"));
 
       change_list(city);
     }
+    if(!check_int(field)) return "";
 
     return field;
   }
@@ -139,8 +151,21 @@ class Functions {
 
       change_list(city);
     }
+    if(!check_int(index)) return -1;
 
     return Integer.valueOf(index);
+  }
+
+  public static Boolean check_int(String index) {
+    try {
+      Integer.parseInt(index);
+
+      return true;
+    } catch (Exception exception) {
+      System.out.println(Color("red") + "Typed data was been incorrect, need to type number" + Color("reset"));
+
+      return false;
+    }
   }
 
   public static void print_fields() { // Print all fields of object
